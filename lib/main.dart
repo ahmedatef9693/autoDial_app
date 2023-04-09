@@ -41,52 +41,41 @@ class _MyHomePageState extends State<MyHomePage> {
   int count = 0;
 
   void startTimer() {
-    _start = int.parse(numberofcallsController.text);
+    var ratingInteger = (rating * 10).round();
+    // for (var i = 0; i < ratingInteger; i++) {
 
     const _oneSec = Duration(seconds: 1);
     _timer = Timer.periodic(_oneSec, (timer) {
+      print(ratingInteger);
+      _start = int.parse(numberofcallsController.text);
       setState(() {
         if (_start > 0) {
           _start--;
           if (_start == 0) {
-            // launchCaller();
-            // print(rating);
-
-            // Future.delayed(const Duration(seconds: 5), () {
-            // for (var i = 0; i < x; i++) {
             launchCaller();
-            // }
-            // });
           }
         } else {
           _timer!.cancel();
         }
       });
     });
+    // }
   }
 
   void launchCaller() async {
     FlutterPhoneDirectCaller.callNumber('+201234567890');
-    // for (var i = 0; i < rating; i++) {
-    // await FlutterPhoneDirectCaller.callNumber('+201234567890');
-    // print('\n');
-    // print(i);
-    // _incrementCounter();
-    // }
   }
 
   void _incrementCounter() async {
     startTimer();
     if (_start > 0) {
-      // print(_start);
+      //
     } else {
       launchCaller();
     }
     setState(() {
       _counter++;
     });
-
-    //launchCaller();
   }
 
   @override
@@ -163,11 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           var x = rating * 10;
-          // for (var i = 0; i < x; i++) {
-          //   _incrementCounter();
-          //   print(
-          //       "---------------------------------------Done---------------------------------------");
-          // }
+          _incrementCounter();
         },
         tooltip: 'Call',
         child: Icon(Icons.call),
